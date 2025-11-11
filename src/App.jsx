@@ -1,46 +1,57 @@
-import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import {lazy,Suspense} from "react"
+import { Routes, Route, Navigate, BrowserRouter } from "react-router-dom";
+import { CartProvider } from "./context/CartContext";
 import "./App.css";
 
-import { CartProvider } from "./context/CartContext";
+  const HomePage = lazy(() => import("./pages/HomePage"));
+  const FoodItemsPage = lazy(() => import("./pages/FoodItemsPage"));
+  const OrdersPage = lazy(() => import("./pages/OrdersPage"));
+  const CartPage = lazy(() => import("./pages/CartPage"));
+  const LogPage = lazy(()=> import("./pages/LogPage"))
+  const ContactPage = lazy(() => import("./pages/ContactPage"));
+  const LoginPage = lazy(() => import("./pages/LoginPage"));
+  const SignupPage = lazy(() => import("./pages/SignUpPage"));
+  const ProtectedRoute = lazy(() => import("./routes/ProtectedRoute"));
+  const PublicRoute = lazy(() => import("./routes/PublicRoute"));
+const foodItems = lazy(() => import("./food/foodItems"));
+  const AboutPage = lazy(() => import("./pages/AboutPage"));
 
-import Header from "./components/Header";
-import Hero from "./components/Hero";
-import Menu from "./components/Menu";
-import Footer from "./components/Footer";
-import CartPage from "./pages/CartPage";
 
-const foodItems = [
-    { id: 1, name: "Burger", price: 120, img: "https://via.placeholder.com/150" ,alt:"ok" },
-    { id: 2, name: "Pizza", price: 250, img: "https://via.placeholder.com/150" },
-    { id: 3, name: "Pasta", price: 180, img: "https://via.placeholder.com/150" },
-    { id: 4, name: "Biryani", price: 220, img: "https://via.placeholder.com/150" },
-];
+
+
 
 function App() {
-    return (
-        <CartProvider>
-            <Router>
-                <div className="app">
-                    <Header />
-                    <Routes>
-                        <Route
-                            path="/"
-                            element={
-                                <>
-                                    <Hero />
-                                    <Menu items={foodItems} />
-                                </>
-                            }
-                        />
-                        <Route path="/cart" element={<CartPage />} />
-                    </Routes>
-                    <Footer />
-                </div>
-            </Router>
-        </CartProvider>
-    );
+
+
+  return (
+    <BrowserRouter>
+    <Suspense fallback={<div className="loader">
+      <div className="loading"></div>
+      <h1>Loading...</h1></div>}>
+      <CartProvider>
+        <Routes>
+          <Route path="/home" element={<ProtectedRoute><HomePage /></ProtectedRoute>} />
+          <Route path="/foodItems" element={<ProtectedRoute><FoodItemsPage/></ProtectedRoute>} />
+          <Route path="/orders" element={<ProtectedRoute><OrdersPage items={foodItems} /></ProtectedRoute>} />
+          <Route path="/cart" element={<ProtectedRoute><CartPage /></ProtectedRoute>} />
+          <Route path="/contact" element={<ProtectedRoute><ContactPage /></ProtectedRoute>} />
+            <Route path="/logout" element={<ProtectedRoute><LogPage /></ProtectedRoute>} />
+            <Route path="/about" element={<ProtectedRoute><AboutPage /></ProtectedRoute>} />
+
+
+
+          <Route path="/" element={<PublicRoute><LoginPage /></PublicRoute>} />
+          <Route path="/signup" element={<PublicRoute><SignupPage /></PublicRoute>} />
+
+
+          <Route path="*" element={<Navigate to="/home" replace />} />
+        </Routes>
+
+
+      </CartProvider>
+      </Suspense>
+    </BrowserRouter>
+  );
 }
 
 export default App;
-

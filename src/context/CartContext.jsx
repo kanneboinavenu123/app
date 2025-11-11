@@ -5,7 +5,7 @@ const CartContext = createContext();
 export const CartProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
 
-  // Add to cart
+
   const addToCart = (item) => {
     const existing = cart.find((cartItem) => cartItem.id === item.id);
     if (existing) {
@@ -21,7 +21,7 @@ export const CartProvider = ({ children }) => {
     }
   };
 
-  // Remove from cart
+  
   const removeFromCart = (id) => {
     const existing = cart.find((cartItem) => cartItem.id === id);
     if (existing && existing.quantity > 1) {
@@ -37,17 +37,16 @@ export const CartProvider = ({ children }) => {
     }
   };
 
-  // Total count
   const cartCount = cart.reduce((sum, item) => sum + item.quantity, 0);
 
   return (
-    <CartContext.Provider value={{ cart, addToCart, removeFromCart, cartCount }}>
+    <CartContext.Provider value={{ cart, addToCart, removeFromCart, cartCount,setCart }}>
       {children}
     </CartContext.Provider>
   );
 };
 
-// ✅ Export useCart hook (you missed this part earlier!)
+
 export const useCart = () => useContext(CartContext);
 
 
