@@ -14,7 +14,8 @@ import "./App.css";
   const ProtectedRoute = lazy(() => import("./routes/ProtectedRoute"));
   const PublicRoute = lazy(() => import("./routes/PublicRoute"));
 const foodItems = lazy(() => import("./food/foodItems"));
-  const AboutPage = lazy(() => import("./pages/AboutPage"));
+const AboutPage = lazy(() => import("./context/AboutPage"));
+  const Profile = lazy(() => import("./context/Profile"));
 
 
 
@@ -37,6 +38,7 @@ function App() {
           <Route path="/contact" element={<ProtectedRoute><ContactPage /></ProtectedRoute>} />
             <Route path="/logout" element={<ProtectedRoute><LogPage /></ProtectedRoute>} />
             <Route path="/about" element={<ProtectedRoute><AboutPage /></ProtectedRoute>} />
+            <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
 
 
 

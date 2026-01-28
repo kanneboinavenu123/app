@@ -7,10 +7,10 @@
       "password": "123456"
     },
     {
-      "id": "d82b",
-      "name": "venu",
+      "name": "venu yadav",
       "email": "kanneboinavenu123@gmail.com",
-      "password": "123456789"
+      "password": "asdfgh",
+      "id": "d82b"
     }
   ],
   "Contacted": [
@@ -20,27 +20,6 @@
       "email": "kanneboinavenu123@gmail.com",
       "phone": "1234567890",
       "message": "sorry i have the payment issue! "
-    },
-    {
-      "id": "21be",
-      "name": "venu",
-      "email": "kanneboinavenu123@gmail.com",
-      "phone": "1234567890",
-      "message": "haven't you solved the issue of payment why?..."
-    },
-    {
-      "id": "89de",
-      "name": "venu",
-      "email": "kanneboinavenu123@gmail.com",
-      "phone": "1234567890",
-      "message": "bull sheet!"
-    },
-    {
-      "id": "7f79",
-      "name": "venu",
-      "email": "kanneboinavenu123@gmail.com",
-      "phone": "1234567890",
-      "message": "okokokok"
     }
   ]
 }

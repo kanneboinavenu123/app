@@ -6,7 +6,7 @@ const AboutPage = () => {
 
   return (
       <>
-          <h1>Venu kanneboina</h1>
+          <h1>VENU KANNEBOINA</h1>
           <p>the web designer and founder of this website...!</p>
       </>
   )

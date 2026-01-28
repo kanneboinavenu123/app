@@ -29,8 +29,7 @@ const LogPage = () => {
   };
 
   const handleProfile = () => {
-    alert("Profile feature coming soon! 🚀");
-  };
+    navigate("/profile");  };
 
 
 

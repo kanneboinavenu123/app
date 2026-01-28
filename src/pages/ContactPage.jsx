@@ -9,7 +9,7 @@ const ContactPage = () => {
     const e = {};
     if (!form.name) e.name = 'Please enter your name';
     if (!form.email.match(/^[^@\s]+@[^@\s]+\.[^@\s]+$/)) e.email = 'Enter valid email';
-    if (!form.phone.match(/^\+?[0-9\s-]{10}$/)) e.phone = 'Enter valid number';
+    if (!form.phone.match(/^[0-9]\d{9}$/)) e.phone = 'Enter valid phone number';
     if (!form.message) e.message = 'Message is required';
     setErrors(e);
     return Object.keys(e).length === 0;
@@ -27,7 +27,7 @@ const ContactPage = () => {
     if (!form.phone.trim()) newErrors.phone = "Phone number is required";
     if (!form.message.trim()) newErrors.message = "Message is required";
     setErrors(newErrors);
-
+    if (!validate()) return;
     if (Object.keys(newErrors).length > 0) return;
 
 
@@ -44,7 +44,7 @@ const ContactPage = () => {
               setStatus('sending');
               await new Promise((r) => setTimeout(r, 800));
             setStatus("success");
-            setForm({ name: "", email: "", password: "",message:"" });
+            setForm({ name: "", email: "", phone: "",message:"" });
         }
          catch (error) {
             setStatus(error.message);
@@ -105,7 +105,7 @@ const ContactPage = () => {
             {status === 'sending' ? 'Sending...' : 'Send Message'}
             </button>
 
-            {status === 'success' && (<p className="success-text">Message sent successfully!</p>)}
+            {status === 'success' ? alert("Message sent successfully!") : null}
   </form>
 </div>
 
